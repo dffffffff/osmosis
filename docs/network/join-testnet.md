@@ -25,13 +25,13 @@ After installed, open new terminal to properly load go
 
 ## Install Osmosis Binary
 
-Clone the osmosis repo, checkout and install v3.2.0_with_cache:
+Clone the osmosis repo, checkout and install v4.0.0-rc1:
 
 ```bash
 cd $HOME
 git clone https://github.com/osmosis-labs/osmosis
 cd osmosis
-git checkout v3.2.0_with_cache
+git checkout v4.0.0-rc1
 make install
 ```
 
@@ -61,7 +61,7 @@ Then pres Ctrl+O, then enter to save, then Ctrl+X to exit
 
 ## Set Up Cosmovisor
 
-We will now set up cosmovisor to ensure the upgrade happens flawlessly. To install Cosmovisor:
+To install Cosmovisor:
 
 ```bash
 cd $HOME
@@ -118,24 +118,21 @@ cosmovisor version
 osmosisd version
 ```
 
-These two command should both output 3.1.0-23-g517562d
-
-Before we start cosmovisor, lets prep the upgrade to v4.0.0-rc1:
-
-```bash
-mkdir -p ~/.osmosisd/cosmovisor/upgrades/v4/bin
-cd $HOME/osmosis
-git checkout v4.0.0-rc1
-make build
-cp build/osmosisd ~/.osmosisd/cosmovisor/upgrades/v4/bin
-cd $HOME
-```
-
+These two command should both output 4.0.0-rc1
 
 Reset private validator file to genesis state:
 
 ```bash
 osmosisd unsafe-reset-all
+```
+
+Download and extract somewhat recent snapshot of the chain
+
+```bash
+sudo apt-get install -y aria2 pixz
+cd ~/.osmosisd/
+aria2c -x 3 https://share.blockpane.com/osmosis-testnet-0_20211118_default_null_4.0.0-rc1.tar.xz
+tar -I'pixz' -xvf osmosis-testnet-0_20211118_default_null_4.0.0-rc1.tar.xz
 ```
 
 ## Set Up Osmosis Service
@@ -189,9 +186,4 @@ To see live logs of your service:
 journalctl -u cosmovisor -f
 ```
 
-The process should initialize and get to block 1122200, where it will automatically upgrade to v4.0.0-rc1
-
-
-At around block height 1128853, when reading the logs you will see many notifications of "slashing and jailing validator". This is due to fact that many validators did not participate in the testnet and therefore get jailed at the same time (approx 30,000 blocks after the upgrade). In my experience, this may cause your node to reset due to a memory error. As long as you set up the service above, it will automatically reset and eventually get passed this difficult block. 
-
-Guide as of 17 November 2021.
+Guide as of 23 November 2021.
