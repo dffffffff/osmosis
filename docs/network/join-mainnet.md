@@ -92,8 +92,6 @@ Download the chain data its corresponding checksum:
 
 ```bash
 cd $HOME/.osmosisd/
-aria2c -x5 https://get.quicksync.io/$FILENAME
-OR (single thread but no double space needed on harddisk)
 wget -O - https://get.quicksync.io/$FILENAME | lz4 -d | tar -xvf -
 wget https://raw.githubusercontent.com/chainlayer/quicksync-playbooks/master/roles/quicksync/files/checksum.sh
 wget https://get.quicksync.io/$FILENAME.checksum
