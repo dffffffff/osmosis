@@ -1,0 +1,8 @@
+{
+    "binaries": {
+        "linux/amd64": "https://github.com/osmosis-labs/osmosis/releases/download/v6.0.0/osmosisd-6.0.0-linux-amd64?checksum=sha256:c426457b1b559110b2e2081eeaec55279461391c164b534ab33dd56aa8cea07b",
+        "linux/arm64": "https://github.com/osmosis-labs/osmosis/releases/download/v6.0.0/osmosisd-6.0.0-linux-arm64?checksum=sha25668da4313e73ed912b0603fdb975ec03cd1e75c34f9bad7e46cb0bd256a6edf4f",
+        "darwin/amd64": "https://github.com/osmosis-labs/osmosis/releases/download/v6.0.0/osmosisd-6.0.0-darwin-amd64?checksum=sha256:2f702a5c58486df247efd8368d0aa868218fcc6649943966dcf3c8e0fe0d320b",
+        "windows/amd64": "https://github.com/osmosis-labs/osmosis/releases/download/v6.0.0/osmosisd-6.0.0-windows-amd64.exe?checksum=sha256:fb9447a24155f4e113ac1a2a3d546fde44ca22e2ce3d0412b65754e1bbd57310a"
+    }
+}
